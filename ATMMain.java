@@ -15,13 +15,13 @@ class ATM {
         System.out.println("4. Exit");
     }
 
-    public void processChoice(int choice) {
+    public void processChoice(int choice, Scanner scanner) {
         switch (choice) {
             case 1:
-                withdraw();
+                withdraw(scanner);
                 break;
             case 2:
-                deposit();
+                deposit(scanner);
                 break;
             case 3:
                 checkBalance();
@@ -34,8 +34,7 @@ class ATM {
         }
     }
 
-    public void withdraw() {
-        Scanner scanner = new Scanner(System.in);
+    public void withdraw(Scanner scanner) {
         System.out.print("Enter the amount to withdraw: ");
         double amount = scanner.nextDouble();
 
@@ -44,17 +43,14 @@ class ATM {
         } else {
             System.out.println("Insufficient funds.");
         }
-        scanner.close();
     }
 
-    public void deposit() {
-        Scanner scanner = new Scanner(System.in);
+    public void deposit(Scanner scanner) {
         System.out.print("Enter the amount to deposit: ");
         double amount = scanner.nextDouble();
 
         account.deposit(amount);
         System.out.println("Deposit successful.");
-        scanner.close();
     }
 
     public void checkBalance() {
@@ -97,7 +93,7 @@ public class ATMMain {
             atm.displayMenu();
             System.out.print("Enter your choice: ");
             int choice = scanner.nextInt();
-            atm.processChoice(choice);
+            atm.processChoice(choice, scanner);
 
             if (choice == 4) {
                 break;
